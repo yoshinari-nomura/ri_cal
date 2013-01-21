@@ -168,7 +168,7 @@ module RiCal
             add_x_property(x_property_key, val)
           end
         else
-          x_properties[x_property_key].map {|property| property.value}
+          x_properties[x_property_key].map {|property| property.ruby_value}
         end
       else
         super
@@ -214,7 +214,7 @@ module RiCal
     def export_x_properties_to(export_stream) #:nodoc:
       x_properties.each do |name, props|
         props.each do | prop |
-          export_stream.puts("#{name}:#{prop}")
+          export_stream.puts("#{name}#{prop.to_s}")
         end
       end
     end
