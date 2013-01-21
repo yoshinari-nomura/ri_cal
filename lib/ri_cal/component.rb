@@ -161,7 +161,7 @@ module RiCal
 
     def method_missing(selector, *args, &b) #:nodoc:
       xprop_candidate = selector.to_s
-      if (match = /^(x_.+)(=?)$/.match(xprop_candidate))
+      if (match = /^(x_[^=]+)(=?)$/.match(xprop_candidate))
         x_property_key = match[1].gsub('_','-').upcase
         if match[2] == "="
           args.each do |val|
