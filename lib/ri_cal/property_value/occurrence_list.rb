@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module RiCal
   class PropertyValue
     # OccurrenceList is used to represent the value of an RDATE or EXDATE property.
@@ -95,6 +96,14 @@ module RiCal
 
       def visible_params # :nodoc:
         result = params.dup
+
+        case @elements.first
+        when Date
+          result = {"VALUE" => "DATE"}.merge(params)
+        when DateTime
+          result = {"VALUE" => "DATE-TIME"}.merge(params)
+        end
+
         if has_local_timezone?
           result['TZID'] = tzid
         else
