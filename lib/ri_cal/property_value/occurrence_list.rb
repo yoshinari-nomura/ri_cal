@@ -102,6 +102,8 @@ module RiCal
           result = {"VALUE" => "DATE"}.merge(params)
         when DateTime
           result = {"VALUE" => "DATE-TIME"}.merge(params)
+        when Period
+          result = {"VALUE" => "PERIOD"}.merge(params)
         end
 
         if has_local_timezone?
